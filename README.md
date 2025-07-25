@@ -1,2 +1,6 @@
-# env-data-modeling
-Environment used for data modeling.
+# Environment for data modeling
+
+Expectations in a project:
+
+* `pyproject.toml`
+* `uv.lock`
