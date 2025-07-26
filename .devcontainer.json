@@ -1,0 +1,23 @@
+{
+  "name": "NBNL Data Modeling",
+  "image": "ghcr.io/netbeheer-nederland/env-data-modeling:latest",
+  "remoteUser": "devuser",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "asciidoctor.asciidoctor-vscode"
+      ],
+      "settings": {
+        "git.defaultCloneDirectory": "/workspaces/",
+        "asciidoc.preview.asciidoctorAttributes": {
+          "imagesdir": "../images/",
+          "page-pagination": "",
+          "experimental": "",
+          "kroki-fetch-diagram": false,
+          "kroki-default-format": "svg@",
+          "kroki-server-url": "http://fruit.ritger.nl:9000"
+        }
+      }
+    }
+  }
+}
