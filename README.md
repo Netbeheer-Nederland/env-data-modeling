@@ -2,16 +2,17 @@
 
 Netbeheer Nederland environment for information modeling and generating documentation and schemas.
 
-
 ## Features
 
+When using Dev Containers, the benefits are maximal:
 
-* Fully installed and configured environment for uniform 
-* Partially pre-configured VS Code editor when using
-* mounting the project working directory in the container in the `/project` directory
-* mount the host user's SSH key directory in the container
-* mapping the host user to the target container environment (UID, GID and name)
-* setting the Git user name and e-mail as globally (in the `--global` sense) configured in the host environment, or through environment variables
+* Fully installed and configured environment for working on schemas and application profiles.
+* VS Code with useful extensions pre-installed and recommended settings set.
+* Developer experience working in Dev Container as if working locally:
+    * Local Git configuration is mapped to the container;
+    * Project files are mounted in the container;
+    * Commands run in the terminal will run in the container and therefore run in the desired environment;
+    * IDE commands and interactions all work within the container.
 
 ## Requirements
 
