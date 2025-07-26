@@ -1,106 +1,70 @@
-# `env-data-modeling`
+# Data Modeling Environment
 
 Netbeheer Nederland environment for information modeling and generating documentation and schemas.
 
+
 ## Features
 
-The `run.sh` script should be used to instantiate a container. It runs the container for you while taking care of:
 
-* installing all dependencies for working with LinkML, Antora, Git, etc.
+* Fully installed and configured environment for uniform 
+* Partially pre-configured VS Code editor when using
 * mounting the project working directory in the container in the `/project` directory
 * mount the host user's SSH key directory in the container
 * mapping the host user to the target container environment (UID, GID and name)
 * setting the Git user name and e-mail as globally (in the `--global` sense) configured in the host environment, or through environment variables
 
-## Installation
+## Requirements
 
-The only requirements for running this container are:
-
-* Docker (_required_)
-* Bash (_recommended_)
-* SSH keys (_if applicable_)
+* Docker
+* VS Code (recommended for Dev Containers)
+* Git (configured)
 
 > [!note]
-> If you don't have or want to use Bash, you are advised to port the `run.sh` script to one of your liking, or run the Docker container manually.
+> Windows users need to have an up to date version of WSL installed as well.
 
-> [!caution]
-> Windows users should use WSL 2 in order to have guarantee that the environment functions as intended.
+## Usage
 
-All you need to do to get started is copy the `run.sh` script somewhere you like and make it executable.
+### Dev Container
 
-For example:
-
-```sh
-$ wget https://raw.githubusercontent.com/Netbeheer-Nederland/env/refs/tags/v1.3.1/run.sh -O ~/.local/bin/run-nbnl-env
---2025-05-08 15:23:35--  https://raw.githubusercontent.com/Netbeheer-Nederland/env/refs/tags/v1.1.0/run.sh
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 2606:50c0:8001::154, 2606:50c0:8003::154, 2606:50c0:8002::154, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8001::154|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 631 [text/plain]
-Saving to: ‘/home/bart/.local/bin/run-nbnl-env’
-
-/home/bart/.local/bin/ 100%[==========================>]     631  --.-KB/s    in 0s
-
-2025-05-08 15:23:36 (33.1 MB/s) - ‘/home/bart/.local/bin/run-nbnl-env’ saved [631/631]
-
-$ ls -la ~/.local/bin/run-nbnl-env
--rw-rw-r-- 1 bart bart 963 May  8 20:40 /home/bart/.local/bin/run-nbnl-env
-$ chmod +x ~/.local/bin/run-nbnl-env
-$ ls -la ~/.local/bin/run-nbnl-env
--rwxrwxr-x 1 bart bart 963 May  8 20:40 /home/bart/.local/bin/run-nbnl-env
-```
-
-This would enable instantiating a Docker container by simply invoking: `run-nbnl-env`.
-
-## Running
-
-Just run the runner script you installed earlier. If you have Git installed and set up in the host environment, the script will map your Git user to the one used in the container.
-
-For example:
-
-```sh
-$ run-nbnl-env
-```
-
-Running the script without any arguments will assume the current working directory is the project directory, which it mounts under `/project`.
-
-If a directory path is passed as an argument, it is used as the project directory instead. **Caution**: the provided path must be absolute. For example:
-
-```sh
-$ run-nbnl-env ~/projects/my-data-product
-```
-
-If you do not have Git set up, you must provide your user name and e-mail through environment variables:
-
-```sh
-$ GIT_USER_NAME="Your Name" GIT_USER_EMAIL="you@yourcompany.com" run-nbnl-env
-```
+The `.devcontainer.json` contains a specification for creating a Dev Container which takes care of setting up the uniform environment specified in the Docker image, but also providing a seamless editing experience in that container as if one were wokring locally. The file tree, terminal, Git interactions, etc. are all run in the container, even though the experience is no different from working on a local project.
 
 > [!note]
-> Passing in these variables takes precedence over a found Git configuration on the host environment.
+> There are other IDEs with support for the Dev Container specification, including IntelliJ IDEs and Vim. Use these plugins at your own risk.
+
+### Docker container
+
+Using the Docker container provides you with a uniform environment, but unlike the Dev Container will not enhance your IDE with preconfigured settings and extensions.
+
+The Docker container is published on GHCR and can be found [here](https://github.com/Netbeheer-Nederland/env-data-modeling/pkgs/container/env-data-modeling).
+
+### Own environment
+
+> [!warning]
+> Managing one's own environment this way makes it virtually impossible to guarantee environment uniformity. Only go this route if you are a developer and know what you are doing. Even then, proceed with great caution.
+
+It is also possible to not make use of any container and just stick to one's own editor, setups and tools.
+
+In this scenario, the user themselves is responsible for ensuring the environment they work in is valid. At the very least this involves using package managers to install dependencies declared in files such as `package.json` and `pyproject.toml`, but it is also wise to read through the `Dockerfile` of this environment and try to replicate as closely as possible what is installed and configured there.
+
 
 ## Developing
 
-The Docker image is published on Docker Hub [here](https://hub.docker.com/r/bartkl/nbnl-env/).
 
-### Building
+### Building and tagging
 
-Simply run the `build.sh` script:
+Increment the version to the newest `vX.Y` and build using:
 
 ```sh
-$ ./build.sh
+$ docker build \
+    --tag ghcr.io/netbeheer-nederland/env-data-modeling:vX.Y \
+    --tag ghcr.io/netbeheer-nederland/env-data-modeling:latest \
+    .
 ```
 
-### Pushing to Docker Hub
+### Pushing
 
-First, tag the latest local image:
-
-```sh
-$ docker tag nbnl-env bartkl/nbnl-env:latest
-```
-
-Then, push it:
+Push to GHCR using:
 
 ```sh
-$ docker push bartkl/nbnl-env:latest
+$ docker push --all-tags ghcr.io/netbeheer-nederland/env-data-modeling
 ```
