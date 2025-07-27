@@ -28,8 +28,6 @@ RUN uv export --format requirements.txt > requirements.txt \
 # Install just
 RUN curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/local/bin --tag 1.38.0
 
-COPY justfile ./
-
 # Install shell completions for just
 RUN just --completions bash >> /usr/share/bash-completion/completions/just \
     && echo 'source /usr/share/bash-completion/completions/just' >> /etc/bash.bashrc
