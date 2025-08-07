@@ -164,6 +164,25 @@ wheels = [
 ]
 
 [[package]]
+name = "env"
+version = "1.0.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "check-jsonschema" },
+    { name = "gen-linkml-profile" },
+    { name = "linkml" },
+    { name = "linkml-asciidoc-generator" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "check-jsonschema", specifier = ">=0.31.0,<0.32.0" },
+    { name = "gen-linkml-profile", git = "https://github.com/Netbeheer-Nederland/gen-linkml-profile.git" },
+    { name = "linkml", specifier = ">=1.8.4,<1.9" },
+    { name = "linkml-asciidoc-generator", git = "https://github.com/Netbeheer-Nederland/linkml-asciidoc-generator.git?rev=v0.4.0" },
+]
+
+[[package]]
 name = "et-xmlfile"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -562,27 +581,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/4f/78/d9b09ba24bb36ef8b83b71be547e118d46214735b6dfb39e4bfde0e9b9dd/parse-1.20.2.tar.gz", hash = "sha256:b41d604d16503c79d81af5165155c0b20f6c8d6c559efa66b4b695c3e5a0a0ce", size = 29391 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d0/31/ba45bf0b2aa7898d81cbbfac0e88c267befb59ad91a19e36e1bc5578ddb1/parse-1.20.2-py2.py3-none-any.whl", hash = "sha256:967095588cb802add9177d0c0b6133b5ba33b1ea9007ca800e526f42a85af558", size = 20126 },
-]
-
-[[package]]
-name = "pie-poc"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "check-jsonschema" },
-    { name = "gen-linkml-profile" },
-    { name = "linkml" },
-    { name = "linkml-asciidoc-generator" },
-    { name = "linkml-runtime" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "check-jsonschema", specifier = ">=0.31.0,<0.32.0" },
-    { name = "gen-linkml-profile", git = "https://github.com/Netbeheer-Nederland/gen-linkml-profile.git" },
-    { name = "linkml", specifier = ">=1.8.4,<1.9" },
-    { name = "linkml-asciidoc-generator", git = "https://github.com/Netbeheer-Nederland/linkml-asciidoc-generator.git?rev=v0.4.0" },
-    { name = "linkml-runtime", specifier = ">=1.8.1,<1.9" },
 ]
 
 [[package]]

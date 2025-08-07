@@ -1,5 +1,5 @@
 [project]
-name = "env-data-modeling"
+name = "env"
 requires-python = ">=3.12,<4"
 dependencies = [
     "linkml>=1.8.4,<1.9",
@@ -8,6 +8,3 @@ dependencies = [
     "check-jsonschema (>=0.31.0,<0.32.0)",
 ]
 version = "1.0.0"
-
-[tool.poetry]
-package-mode = false

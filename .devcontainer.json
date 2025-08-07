@@ -1,0 +1,27 @@
+{
+  "name": "NBNL Dev Container",
+  "image": "ghcr.io/netbeheer-nederland/env:latest",
+  "remoteUser": "devuser",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "asciidoctor.asciidoctor-vscode",
+        "hediet.vscode-drawio"
+      ],
+      "settings": {
+        "git.defaultCloneDirectory": "/workspaces/",
+        "asciidoc.preview.asciidoctorAttributes": {
+          "imagesdir": "../images/",
+          "page-pagination": "",
+          "experimental": "",
+          "kroki-fetch-diagram": false,
+          "kroki-default-format": "svg@",
+          "kroki-server-url": "http://fruit.ritger.nl:9000"
+      }
+    }
+  },
+  "postCreateCommand": "git config --global user.name 'Your Name' && git config --global user.email 'your@email-address.com'",
+  "containerEnv": {
+    "GH_TOKEN": "your-gh-pat-token"
+  }
+}
