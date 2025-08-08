@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install Poetry (required by some projects)
 RUN curl -sSL https://install.python-poetry.org | python3 -
+RUN chown devuser /root/.local/bin/poetry
 
 # Install Python project dependencies
 COPY pyproject.toml uv.lock ./
