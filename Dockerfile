@@ -10,6 +10,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV RUNNING_IN_DOCKER=true
 ENV NODE_PATH=/usr/lib/node_modules
 
+ENV PATH="/root/.local/bin:$PATH"
+
 EXPOSE 8080
 
 RUN groupadd --gid $GROUP_ID $USER_NAME \
@@ -22,6 +24,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     bc \
     vim
+
+# Install Poetry (required by some projects)
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # Install Python project dependencies
 COPY pyproject.toml uv.lock ./
