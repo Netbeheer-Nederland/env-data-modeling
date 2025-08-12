@@ -26,7 +26,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install Poetry (required by some projects)
 RUN pip install --no-cache-dir poetry==2.1.4
 
-
 # Install Python project dependencies
 COPY pyproject.toml uv.lock ./
 RUN uv export --format requirements.txt > requirements.txt \
